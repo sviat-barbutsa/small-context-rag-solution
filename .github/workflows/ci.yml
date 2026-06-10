@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m compileall small_context_rag_solution
+        working-directory: python
+      - run: python -m small_context_rag_solution --question "Why can RAG fail when the context budget is too small?"
+        working-directory: python
+      - run: RAW_CONTEXT_TOKEN_BUDGET=1200 python -m small_context_rag_solution --question "Why can RAG fail when the context budget is too small?"
+        working-directory: python
+
+  typescript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+        working-directory: typescript
+      - run: npm run build
+        working-directory: typescript
+      - run: npm run demo
+        working-directory: typescript
+      - run: RAW_CONTEXT_TOKEN_BUDGET=1200 npm run demo
+        working-directory: typescript

@@ -1,0 +1,5 @@
+[project]
+name = "small-context-rag-solution"
+version = "0.1.0"
+description = "Dependency-free demo for managing small-context RAG."
+requires-python = ">=3.10"
