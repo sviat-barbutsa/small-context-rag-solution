@@ -117,7 +117,7 @@ What is recursive summary reduction?
 Why include neighbor chunks?
 ```
 
-Both examples are dependency-light and deliberately transparent. They use simplified demo-only local retrieval and summarization so the architecture is easy to inspect. In a production system, replace those pieces with your LLM, embedding model, and vector store.
+Both examples are dependency-light and transparent. They use simplified demo-only local retrieval and summarization so the architecture is easy to inspect. In a production system, replace those pieces with your LLM, embedding model, and vector store.
 
 The first question is the main reproducibility check. It should show the retrieval trace: document summary hits, chunk summary hits, raw chunks included, and raw chunks skipped by the 250-token context budget.
 
